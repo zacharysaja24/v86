@@ -17,7 +17,7 @@ var emulator = new V86({
     vga_bios: { url: __dirname + "/../../bios/vgabios.bin" },
     cdrom: { url: __dirname + "/../../images/linux4.iso" },
     autostart: true,
-    memory_size: 32 * 1024 * 1024,
+    memory_size: 64 * 1024 * 1024,
     filesystem: {},
     disable_jit: +process.env.DISABLE_JIT,
     log_level: +process.env.LOG_LEVEL || 0,
