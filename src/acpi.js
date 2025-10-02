@@ -158,7 +158,7 @@ ACPI.prototype.timer = function(now)
 
 ACPI.prototype.get_timer = function(now)
 {
-    const t = Math.round(now * (PMTIMER_FREQ_SECONDS / 1000));
+    const t = Math.round(now * (PMTIMER_FREQ_SECONDS / 10000));
 
     // Due to the low precision of JavaScript's time functions we increment the
     // returned timer value every time it is read
@@ -167,7 +167,7 @@ ACPI.prototype.get_timer = function(now)
     {
         // don't go past 1ms
 
-        if(this.timer_imprecision_offset < PMTIMER_FREQ_SECONDS / 1000)
+        if(this.timer_imprecision_offset < PMTIMER_FREQ_SECONDS / 10000)
         {
             this.timer_imprecision_offset++;
         }
