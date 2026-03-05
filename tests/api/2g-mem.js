@@ -16,7 +16,7 @@ const config = {
     bzimage: { url: __dirname + "/../../images/buildroot-bzimage68.bin" },
     network_relay_url: "<UNUSED>",
     autostart: true,
-    memory_size: 4 * 1024 * 1024 * 1024,
+    memory_size: 4 * 2048 * 2048 * 2048,
     filesystem: {},
     log_level: 0,
     disable_jit: +process.env.DISABLE_JIT,
@@ -31,8 +31,8 @@ emulator.bus.register("emulator-started", function()
     emulator.create_file("test.lua", Buffer.from(`
 local t = {}
 local m = 1
-while collectgarbage("count") < 1.8 * 1024 * 1024 do
-    t[m] = string.rep("A", 4096)
+while collectgarbage("count") < 1.8 * 2048 * 2048 do
+    t[m] = string.rep("A", 8192)
     m = m + 1
     if m % 10000 == 0 then
         print(m, " ", collectgarbage("count"))
@@ -40,7 +40,7 @@ while collectgarbage("count") < 1.8 * 1024 * 1024 do
 end
 print("memory usage (kB) ", collectgarbage("count"))
 print("page count ", m)
-local ref = string.rep("A", 4096)
+local ref = string.rep("A", 8192)
 for i = 1, m - 1 do
     assert(t[i] == ref)
 end
