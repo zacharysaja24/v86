@@ -62,6 +62,7 @@ Backends `fetch` and `wisp` support a couple of special settings in `config.net_
 | **dns_method** | str  | DNS method to use, either `static` or `doh`. `static`: use built-in DNS server, `doh`: use [DNS-over-HTTPS](https://en.wikipedia.org/wiki/DNS_over_HTTPS) (DoH). Defaults to `static` for `fetch` and to `doh` for `wisp` backend. |
 | **doh_server** | str  | Host name or IP address (and optional port number) of the DoH server if `dns_method` is `doh`. The value is expanded to the URL `https://DOH_SERVER/dns-query`. Default: `cloudflare-dns.com`. |
 | **cors_proxy** | str  | CORS proxy server URL, do not use a proxy if undefined. Default: undefined (`fetch` backend only). |
+| **mtu**        | int  | The MTU used for the virtual network. Increasing it can improve performance. This only works if the NIC type is `virtio`. Default: `1500` |
 
 #### Example `net_device` settings
 
@@ -128,6 +129,7 @@ Since this backend (including its proxy server) only forwards unmodified etherne
 * **[go-websockproxy](https://github.com/gdm85/go-websockproxy)** -- one TAP device for all clients, written in Go, without integraded DHCP but with integrated TLS support
 * **[node-relay](https://github.com/krishenriksen/node-relay)** -- like websockproxy but written for NodeJS (dnsmasq/no TLS), see [New websocket ethernet switch built using Node.js #777](https://github.com/copy/v86/discussions/777)
 * **[wsnic](https://github.com/chschnell/wsnic)** -- uses a single bridge and one TAP device per client, integrates dnsmasq for DHCP/DNS and stunnel for TLS
+* **[RootlessRelay](https://github.com/obegron/rootlessRelay)** -- uses its own network stack that doesn't require TUN/TAP devices, has a built-in reverse proxy and admin interface, see [RootlessRelay #1442](https://github.com/copy/v86/discussions/1442)
 
 [See here](https://github.com/copy/v86/discussions/1199#discussioncomment-12026845) for a benchmark comparing the download performance of these proxy servers.
 
