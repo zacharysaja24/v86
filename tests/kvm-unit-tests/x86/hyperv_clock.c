@@ -5,7 +5,7 @@
 #include "hyperv.h"
 #include "vm.h"
 
-#define MAX_CPU 4
+#define MAX_CPU 8
 #define TICKS_PER_SEC (1000000000 / 100)
 
 struct hv_reference_tsc_page *hv_clock;
